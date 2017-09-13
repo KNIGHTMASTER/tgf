@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+</head>
+<body>
+<div class="layout-header" th:fragment="main-header">
+    <div class="navbar navbar-default">
+        <div th:replace="base/header/main-icon :: header-main-icon"></div>
+        <div th:replace="base/header/user-notification :: header-user-notification"></div>
+    </div>
+</div>
+</body>
+</html>
