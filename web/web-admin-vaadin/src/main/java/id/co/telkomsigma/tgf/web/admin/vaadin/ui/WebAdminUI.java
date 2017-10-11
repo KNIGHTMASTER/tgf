@@ -1,5 +1,6 @@
 package id.co.telkomsigma.tgf.web.admin.vaadin.ui;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -38,8 +39,9 @@ import java.util.LinkedList;
  * @author <a href="mailto:fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @Title("Application Web Backend")
-@Theme(value = "wissensalt")
+@Theme(value = "tgf")
 @SpringUI(path = "")
+@PreserveOnRefresh
 public class WebAdminUI extends UI {
     /**
      *
@@ -122,6 +124,7 @@ public class WebAdminUI extends UI {
         menuDTO.setMenuItemDTOs(menuItemDTOs);
 
         menuCssLayout.addComponent(menuUserSetting);
+
         root.addMenu(menuBuilder.build(menuCssLayout, menuItemsLayout, menuDTO, getUI()));
 
         addStyleName(ValoTheme.UI_WITH_MENU);

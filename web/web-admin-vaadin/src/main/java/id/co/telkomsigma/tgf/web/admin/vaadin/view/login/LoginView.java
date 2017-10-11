@@ -31,7 +31,7 @@ public class LoginView extends VerticalLayout implements View, IComponentInitial
     private static final long serialVersionUID = 8682971569973011022L;
 
     @Autowired
-    private LoginPanelTop loginPanelTop;
+    private LoginPanelContainerRight loginPanelContainerRight;
 
     private Navigator navigator;
 
@@ -39,7 +39,7 @@ public class LoginView extends VerticalLayout implements View, IComponentInitial
     @Override
     public void initComponents() {
         this.setSizeFull();
-        this.addComponent(loginPanelTop);
+        this.addComponent(loginPanelContainerRight);
 
         this.navigator = UI.getCurrent().getNavigator();
         this.initAction();
@@ -47,13 +47,13 @@ public class LoginView extends VerticalLayout implements View, IComponentInitial
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        this.loginPanelTop.loginPanelFields.getUserNameTextField().focus();
+        this.loginPanelContainerRight.getLoginPanelFields().getUserNameTextField().focus();
     }
 
 
     @Override
     public void initAction() {
-        this.loginPanelTop.loginPanelFields.getLoginButton().addClickListener(new Button.ClickListener() {
+        this.loginPanelContainerRight.getLoginPanelFields().getSignInButtonPanel().getLoginButton().addClickListener(new Button.ClickListener() {
             /**
              *
              *

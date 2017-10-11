@@ -12,6 +12,10 @@ import id.co.telkomsigma.tgf.web.admin.vaadin.dto.menubar.MenuItemParentDTO;
  * Created on 8/20/17.
  *
  * @author <a href="mailto:fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
+ *
+ * <p>
+ *     MenuBar with maximum three sub menus
+ * </p>
  */
 public abstract class AMenuBar extends MenuBar implements IMenuBarDataRetriever, IComponentInitializer {
     /**

@@ -18,17 +18,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class MenuBuilder {
 
-    public CssLayout build(CssLayout p_Menu, CssLayout p_MenuItemsLayout, MenuDTO p_MenuDTO, UI p_UI) {
+    public CssLayout build(CssLayout p_MenuCssLayout, CssLayout p_MenuItemsLayout, MenuDTO p_MenuDTO, UI p_UI) {
         p_MenuItemsLayout.setPrimaryStyleName(TGFValoTheme.VALO_MENU_ITEMS);
-        p_Menu.addComponent(p_MenuItemsLayout);
+        p_MenuCssLayout.addComponent(p_MenuItemsLayout);
 
         for (MenuItemDTO menuItem : p_MenuDTO.getMenuItemDTOs()) {
             Button b = new Button(menuItem.getName(), event -> p_UI.getNavigator().navigateTo(menuItem.getViewName()));
             b.setCaptionAsHtml(true);
             b.setPrimaryStyleName(ValoTheme.MENU_ITEM);
             b.setIcon(VaadinIcons.valueOf(menuItem.getIcon()));
+
             p_MenuItemsLayout.addComponent(b);
+
         }
-        return p_Menu;
+
+        return p_MenuCssLayout;
     }
 }

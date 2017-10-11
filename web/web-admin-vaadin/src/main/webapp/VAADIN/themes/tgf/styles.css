@@ -12503,11 +12503,15 @@ h1.no-margin, .v-label-h1.no-margin, h2.no-margin, .v-label-h2.no-margin, h3.no-
 }
 
 .v-app {
-	background-color: white;
+	background-color: #ffffff;
 }
 
 .panel-app-top {
 	background-color: #00B4F0;
+}
+
+.layout-with-border {
+	border: 0.2px solid black;
 }
 
 .v-nativebutton-app-icon-borderless {
@@ -12552,4 +12556,21 @@ h1.no-margin, .v-label-h1.no-margin, h2.no-margin, .v-label-h2.no-margin, h3.no-
 	right: -7px;
 	display: block;
 	z-index: 1;
+}
+
+.panel-white {
+	background-color: #ffffff;
+}
+
+.panel-transparent {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.panel-rounded {
+	border-radius: 5px;
+}
+
+.backgroundimage {
+	background: url(image-background.jpg);
+	background-size: cover;
 }

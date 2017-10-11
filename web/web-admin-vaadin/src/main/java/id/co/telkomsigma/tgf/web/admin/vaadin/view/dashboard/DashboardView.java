@@ -5,8 +5,8 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
 import id.co.telkomsigma.tgf.web.admin.vaadin.constant.TGFConstant;
-import id.co.telkomsigma.tgf.web.admin.vaadin.view.NavigationLayout;
 
 /**
  * Created on 8/20/17.
@@ -15,7 +15,7 @@ import id.co.telkomsigma.tgf.web.admin.vaadin.view.NavigationLayout;
  */
 @SpringView(name = TGFConstant.ViewNames.DASHBOARD_VIEW)
 @UIScope
-public class DashboardView extends NavigationLayout implements View {
+public class DashboardView extends VerticalLayout implements View {
     /**
      *
      *

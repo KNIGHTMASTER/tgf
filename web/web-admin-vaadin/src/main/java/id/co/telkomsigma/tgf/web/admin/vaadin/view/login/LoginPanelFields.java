@@ -1,13 +1,11 @@
 package id.co.telkomsigma.tgf.web.admin.vaadin.view.login;
 
-import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.spring.annotation.SpringComponent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
-import id.co.telkomsigma.tgf.web.admin.vaadin.component.button.login.LoginButton;
 import id.co.telkomsigma.tgf.web.admin.vaadin.component.passwordfield.LoginPasswordField;
 import id.co.telkomsigma.tgf.web.admin.vaadin.component.textfield.login.UserNameTextField;
-import id.co.telkomsigma.tgf.web.admin.vaadin.rb.IResourceBundleLocator;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -26,39 +24,36 @@ public class LoginPanelFields extends VerticalLayout implements IComponentInitia
     private static final long serialVersionUID = -4890373141046484869L;
 
     @Autowired
-    LoginPasswordField loginPasswordField;
+    SignInLabelPanel signInLabelPanel;
 
     @Autowired
-    UserNameTextField userNameTextField;
+    SignInButtonPanel signInButtonPanel;
 
     @Autowired
-    LoginButton loginButton;
-
-    @Autowired
-    IResourceBundleLocator rb;
+    LoginCentralFields loginCentralFields;
 
     @PostConstruct
     @Override
     public void initComponents() {
-        this.addComponent(userNameTextField);
-        this.addComponent(loginPasswordField);
-        this.addComponent(loginButton);
+        this.addComponent(signInLabelPanel);
+        this.addComponent(loginCentralFields);
+        this.addComponent(signInButtonPanel);
 
-        this.setCaption(rb.getResourceBundle().getString("panel.login.caption"));
+        this.setComponentAlignment(loginCentralFields, Alignment.MIDDLE_CENTER);
+
         this.setSpacing(true);
-        this.setMargin(new MarginInfo(true, true, true, false));
-        this.setSizeUndefined();
+        this.setMargin(false);
     }
 
     public LoginPasswordField getLoginPasswordField() {
-        return loginPasswordField;
+        return loginCentralFields.getLoginPasswordField();
     }
 
     public UserNameTextField getUserNameTextField() {
-        return userNameTextField;
+        return loginCentralFields.getUserNameTextField();
     }
 
-    public LoginButton getLoginButton() {
-        return loginButton;
+    public SignInButtonPanel getSignInButtonPanel() {
+        return signInButtonPanel;
     }
 }

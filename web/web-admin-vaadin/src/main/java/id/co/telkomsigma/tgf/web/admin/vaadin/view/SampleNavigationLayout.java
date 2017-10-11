@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
  * @author <a href="mailto:fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @Component
-public class NavigationLayout extends VerticalLayout implements IComponentInitializer {
+public class SampleNavigationLayout extends VerticalLayout implements IComponentInitializer {
     /**
      *
      *

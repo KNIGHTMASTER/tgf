@@ -1,38 +1,55 @@
 package id.co.telkomsigma.tgf.web.admin.vaadin.view.login;
 
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.spring.annotation.SpringComponent;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.HorizontalLayout;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 
 /**
- * Created on 7/13/17.
+ * Created on 9/27/17.
  *
  * @author <a href="mailto:fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @SpringComponent
-public class LoginPanelTop extends VerticalLayout implements IComponentInitializer {
+public class LoginPanelTop extends HorizontalLayout implements IComponentInitializer {
     /**
      *
      *
      */
-    private static final long serialVersionUID = 1032962252930985094L;
+    private static final long serialVersionUID = -6355047059963083993L;
+
+    /*@Autowired
+    LoginPanelContainerLeft loginPanelContainerLeft;*/
 
     @Autowired
-    LoginPanelFields loginPanelFields;
+    LoginPanelContainerRight loginPanelContainerRight;
+
 
     @PostConstruct
     @Override
     public void initComponents() {
-        this.setSizeFull();
-        this.addComponent(loginPanelFields);
-        this.setComponentAlignment(loginPanelFields, Alignment.MIDDLE_CENTER);
+//        this.addComponent(loginPanelContainerLeft);
+        this.setMargin(new MarginInfo(true, false, false, false));
+        this.addComponent(loginPanelContainerRight);
+        this.setSpacing(true);
     }
 
-    public LoginPanelFields getLoginPanelFields() {
-        return loginPanelFields;
+    /*public LoginPanelContainerLeft getLoginPanelContainerLeft() {
+        return loginPanelContainerLeft;
+    }
+
+    public void setLoginPanelContainerLeft(LoginPanelContainerLeft loginPanelContainerLeft) {
+        this.loginPanelContainerLeft = loginPanelContainerLeft;
+    }*/
+
+    public LoginPanelContainerRight getLoginPanelContainerRight() {
+        return loginPanelContainerRight;
+    }
+
+    public void setLoginPanelContainerRight(LoginPanelContainerRight loginPanelContainerRight) {
+        this.loginPanelContainerRight = loginPanelContainerRight;
     }
 }

@@ -24,6 +24,12 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class MenuBars extends VerticalLayout implements View {
+    /**
+     *
+     *
+     */
+    private static final long serialVersionUID = -380555666558097715L;
+
     public MenuBars() {
         setMargin(true);
         setSpacing(true);
@@ -93,6 +99,8 @@ public class MenuBars extends VerticalLayout implements View {
 
     static MenuBar getMenuBar() {
         Command click = new Command() {
+            private static final long serialVersionUID = -5880625793799942908L;
+
             @Override
             public void menuSelected(MenuItem selectedItem) {
                 Notification.show("Clicked " + selectedItem.getText());
@@ -137,6 +145,8 @@ public class MenuBars extends VerticalLayout implements View {
         find.addItem("Find Previous", click);
 
         Command check = new Command() {
+            private static final long serialVersionUID = -4024732660793320825L;
+
             @Override
             public void menuSelected(MenuItem selectedItem) {
                 Notification.show(selectedItem.isChecked() ? "Checked"

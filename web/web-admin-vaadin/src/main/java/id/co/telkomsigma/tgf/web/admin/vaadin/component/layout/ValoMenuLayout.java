@@ -79,4 +79,8 @@ public class ValoMenuLayout extends HorizontalLayout implements IComponentInitia
     public void setViewDisplay(ComponentContainer viewDisplay) {
         this.viewDisplay = viewDisplay;
     }
+
+    public CssLayout getMenuArea() {
+        return menuArea;
+    }
 }
