@@ -24,13 +24,13 @@ public class LoginPanelFields extends VerticalLayout implements IComponentInitia
     private static final long serialVersionUID = -4890373141046484869L;
 
     @Autowired
-    SignInLabelPanel signInLabelPanel;
+    private SignInLabelPanel signInLabelPanel;
 
     @Autowired
-    SignInButtonPanel signInButtonPanel;
+    private SignInButtonPanel signInButtonPanel;
 
     @Autowired
-    LoginCentralFields loginCentralFields;
+    private LoginCentralFields loginCentralFields;
 
     @PostConstruct
     @Override

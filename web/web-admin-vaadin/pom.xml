@@ -52,6 +52,13 @@
             <version>${project.version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>id.co.telkomsigma.tgf</groupId>
+            <artifactId>web-util</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

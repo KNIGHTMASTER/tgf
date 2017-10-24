@@ -58,7 +58,8 @@ public class ValoMenuLayout extends HorizontalLayout implements IComponentInitia
     @Override
     public void initComponents() {
         this.setWidth("100%");
-        setSizeFull();
+        this.setSizeFull();
+        this.setMargin(false);
 
         menuArea.setPrimaryStyleName(ValoTheme.MENU_ROOT);
 

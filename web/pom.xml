@@ -13,5 +13,6 @@
         <module>web-security</module>
         <module>web-admin</module>
         <module>web-admin-vaadin</module>
+        <module>web-util</module>
     </modules>
 </project>

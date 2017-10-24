@@ -17,11 +17,6 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
@@ -52,6 +47,12 @@
             <artifactId>jquery</artifactId>
             <version>3.2.1</version>
         </dependency>-->
+
+        <dependency>
+            <groupId>id.co.telkomsigma.tgf</groupId>
+            <artifactId>web-util</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

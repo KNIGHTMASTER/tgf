@@ -2,26 +2,20 @@ package id.co.telkomsigma.tgf.web.admin.vaadin.ui;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
-import com.vaadin.data.Binder;
-import com.vaadin.data.validator.StringLengthValidator;
+import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.spring.navigator.SpringViewProvider;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
+import com.vaadin.spring.server.SpringVaadinServlet;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import id.co.telkomsigma.tgf.util.IComponentAction;
 import id.co.telkomsigma.tgf.web.admin.vaadin.constant.TGFConstant;
-import id.co.telkomsigma.tgf.web.admin.vaadin.dto.LoginDTO;
-import id.co.telkomsigma.tgf.web.admin.vaadin.view.dashboard.DashboardView;
-import id.co.telkomsigma.tgf.web.admin.vaadin.view.login.LoginPanelCreateAccount;
-import id.co.telkomsigma.tgf.web.admin.vaadin.view.login.LoginPanelTop;
+import id.co.telkomsigma.tgf.web.admin.vaadin.theme.ValoThemeSessionInitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 
 
 /**
@@ -32,8 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Title("Login App")
 @Theme("tgf")
 @SpringUI(path = "/login")
-@UIScope
-public class LoginUI extends UI implements View , IComponentAction {
+public class LoginUI extends UI {
     /**
      *
      *
@@ -41,47 +34,24 @@ public class LoginUI extends UI implements View , IComponentAction {
     private static final long serialVersionUID = -6619434669245765004L;
 
     @Autowired
-    LoginPanelCreateAccount loginPanelCreateAccount;
-
-    @Autowired
     private SpringViewProvider springViewProvider;
 
-    @Autowired
-    private LoginPanelTop loginPanelTop;
+    @WebServlet(value = "/*", asyncSupported = true)
+    @VaadinServletConfiguration(productionMode = false, ui = LoginUI.class)
+    public static class Servlet extends SpringVaadinServlet {
+        /**
+         *
+         *
+         */
+        private static final long serialVersionUID = -6193754157357404543L;
 
-    private Navigator navigator;
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        this.loginPanelTop.getLoginPanelContainerRight().getLoginPanelFields().getUserNameTextField().focus();
+        @Override
+        protected void servletInitialized() throws ServletException {
+            super.servletInitialized();
+            getService().addSessionInitListener(new ValoThemeSessionInitListener());
+        }
     }
 
-
-    @Override
-    public void initAction() {
-        this.loginPanelTop.getLoginPanelContainerRight().getLoginPanelFields().getSignInButtonPanel().getLoginButton().addClickListener(new Button.ClickListener() {
-            /**
-             *
-             *
-             */
-            private static final long serialVersionUID = 8621095041579762097L;
-
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-
-                Binder<LoginDTO> loginDTOBinder = new Binder<>();
-                loginDTOBinder.bind(loginPanelTop.getLoginPanelContainerRight().getLoginPanelFields().getUserNameTextField(), LoginDTO::getUserName, LoginDTO::setUserName);
-
-                LoginDTO loginDTO = new LoginDTO();
-                loginDTOBinder.setBean(loginDTO);
-
-                loginDTOBinder.forField(loginPanelTop.getLoginPanelContainerRight().getLoginPanelFields().getUserNameTextField()).withValidator(new StringLengthValidator("Name must not be empty", 2, 20))
-                        .bind(LoginDTO::getUserName, LoginDTO::setUserName);
-
-                navigator.navigateTo(TGFConstant.ViewNames.DASHBOARD_VIEW);
-            }
-        });
-    }
 
     @Override
     protected void init(VaadinRequest request) {
@@ -92,21 +62,9 @@ public class LoginUI extends UI implements View , IComponentAction {
         root.setSpacing(true);
         root.setMargin(false);
 
-        root.addComponent(loginPanelCreateAccount);
-        root.addComponent(loginPanelTop);
-
-        root.setComponentAlignment(loginPanelTop, Alignment.MIDDLE_CENTER);
-
-        root.setExpandRatio(loginPanelCreateAccount, 0.2f);
-        root.setExpandRatio(loginPanelTop, 0.8f);
-
-        this.navigator = UI.getCurrent().getNavigator();
-        this.initAction();
-
         setContent(root);
-
-        navigator = getUI().getNavigator();
+        Navigator navigator = new Navigator(this, this);
         navigator.addProvider(springViewProvider);
-        navigator.addView(TGFConstant.ViewNames.DASHBOARD_VIEW, DashboardView.class);
+        getUI().getNavigator().navigateTo(TGFConstant.ViewNames.LOGIN_VIEW);
     }
 }

@@ -16,6 +16,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
+import id.co.telkomsigma.tgf.util.UIConstant.Common.Punctuation;
 import id.co.telkomsigma.tgf.web.admin.vaadin.component.button.menu.MenuUserSetting;
 import id.co.telkomsigma.tgf.web.admin.vaadin.component.layout.MenuCssLayout;
 import id.co.telkomsigma.tgf.web.admin.vaadin.component.layout.ValoMenuLayout;
@@ -133,7 +134,7 @@ public class WebAdminUI extends UI {
         navigator.addProvider(springViewProvider);
 
         String f = Page.getCurrent().getUriFragment();
-        if (f == null || f.equals("")) {
+        if ((f == null) || f.equals(Punctuation.EMPTY)) {
             getUI().getNavigator().navigateTo(TGFConstant.ViewNames.DASHBOARD_VIEW);
         }
 

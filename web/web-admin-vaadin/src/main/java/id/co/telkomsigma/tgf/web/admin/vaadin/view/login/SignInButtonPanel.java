@@ -24,7 +24,7 @@ public class SignInButtonPanel extends VerticalLayout implements IComponentIniti
     private static final long serialVersionUID = -8409111690265727107L;
 
     @Autowired
-    LoginButton loginButton;
+    private LoginButton loginButton;
 
     @PostConstruct
     @Override

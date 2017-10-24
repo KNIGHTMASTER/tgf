@@ -22,7 +22,7 @@ public class LoginPanelContainerRight extends VerticalLayout implements ICompone
     private static final long serialVersionUID = 1032962252930985094L;
 
     @Autowired
-    LoginPanelFields loginPanelFields;
+    private LoginPanelFields loginPanelFields;
 
     @PostConstruct
     @Override

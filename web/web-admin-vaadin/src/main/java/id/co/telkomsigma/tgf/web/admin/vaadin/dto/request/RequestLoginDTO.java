@@ -1,4 +1,4 @@
-package id.co.telkomsigma.tgf.web.admin.vaadin.dto;
+package id.co.telkomsigma.tgf.web.admin.vaadin.dto.request;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @author <a href="mailto:fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
-public class LoginDTO implements Serializable{
+public class RequestLoginDTO implements Serializable{
 
     /**
      *
