@@ -2,7 +2,8 @@ package id.co.telkomsigma.tgf.swing.controller.dialog;
 
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-import org.springframework.beans.factory.annotation.Value;
+import id.co.telkomsigma.tgf.swing.component.base.IResourceBundleLocator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -17,14 +18,14 @@ import java.util.Properties;
 @Component
 public class ControllerDialogTheme {
 
-    @Value("${general.dialog.sidebar.text}")
-    private String generalDialogSidebarText;
+    @Autowired
+    private IResourceBundleLocator rb;
 
-    public void start(java.awt.event.ActionEvent evt, JComboBox p_ComboTheme, java.awt.Component p_Component) {
+    public void start(JComboBox p_ComboTheme, java.awt.Component p_Component) {
         String theme = "Default";
         try {
             Properties props = new Properties();
-            props.put("logoString", generalDialogSidebarText);
+            props.put("logoString", rb.getValue("general.dialog.sidebar.text"));
             switch (p_ComboTheme.getSelectedIndex()) {
                 case 0:
                     UIManager.setLookAndFeel(new NimbusLookAndFeel());
@@ -105,7 +106,7 @@ public class ControllerDialogTheme {
                     break;
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Theme is not supported" + e);
+            JOptionPane.showMessageDialog(null, "Theme is not supported ".concat(e.toString()));
         } finally {
             SwingUtilities.updateComponentTreeUI(p_Component);
         }

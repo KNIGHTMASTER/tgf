@@ -8,11 +8,13 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.spring.server.SpringVaadinServlet;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import id.co.telkomsigma.tgf.web.admin.vaadin.constant.TGFConstant;
 import id.co.telkomsigma.tgf.web.admin.vaadin.theme.ValoThemeSessionInitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +28,7 @@ import javax.servlet.annotation.WebServlet;
 @Title("Login App")
 @Theme("tgf")
 @SpringUI(path = "/login")
+@Scope(scopeName = "prototype")
 public class LoginUI extends UI {
     /**
      *
@@ -63,8 +66,22 @@ public class LoginUI extends UI {
         root.setMargin(false);
 
         setContent(root);
+
         Navigator navigator = new Navigator(this, this);
         navigator.addProvider(springViewProvider);
         getUI().getNavigator().navigateTo(TGFConstant.ViewNames.LOGIN_VIEW);
+    }
+
+    @Override
+    public void attach() {
+        super.attach();
+
+        Object previousSessionError = getSession().getSession().getAttribute("PrevSessionError");
+        if (previousSessionError != null) {
+            Notification notification = new Notification(previousSessionError.toString(), Notification.Type.ERROR_MESSAGE);
+            notification.setDelayMsec(-1);
+            notification.show(getUI().getPage());
+            getSession().getSession().setAttribute("PrevSessionError", null);
+        }
     }
 }

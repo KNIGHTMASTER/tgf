@@ -1,5 +1,6 @@
 package id.co.telkomsigma.tgf.swing.view.panel.tab.settings.language;
 
+import id.co.telkomsigma.tgf.swing.component.base.IResourceBundleLocator;
 import id.co.telkomsigma.tgf.swing.component.button.panel.tab.settings.language.ButtonSavePanelTabSettingLanguage;
 import id.co.telkomsigma.tgf.swing.component.combobox.ComboBoxLanguage;
 import id.co.telkomsigma.tgf.util.IComponentAction;
@@ -34,12 +35,15 @@ public class PanelTabSettingLanguage extends JPanel implements IComponentInitial
     @Qualifier("btSavePanelTabSettingLanguage")
     private ButtonSavePanelTabSettingLanguage btSave;
 
+    @Autowired
+    private IResourceBundleLocator rb;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(PanelTabSettingLanguage.class);
 
     @PostConstruct
     @Override
     public void initComponents() {
-        JLabel lblChooseLanguage = new JLabel("Choose Language ");
+        JLabel lblChooseLanguage = new JLabel(rb.getValue("ui.tab.language.label.chooselanguage"));
 
         this.setLayout(new GridBagLayout());
 

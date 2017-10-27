@@ -41,7 +41,7 @@ public class PropertyModifierImpl implements IPropertyModifier {
             props.store(out, null);
             out.close();
         } catch (IOException e) {
-            LOGGER.error("Error when modify property file {} ", e.toString());
+            LOGGER.error("Error modifying property file {} ", e.toString());
         }
     }
 
@@ -81,7 +81,7 @@ public class PropertyModifierImpl implements IPropertyModifier {
 
         public Enumeration keys() {
             Enumeration keysEnum = super.keys();
-            Vector<String> keyList = new Vector<String>();
+            Vector<String> keyList = new Vector<>();
             while (keysEnum.hasMoreElements()) {
                 keyList.add((String) keysEnum.nextElement());
             }

@@ -10,4 +10,6 @@ import java.util.ResourceBundle;
 public interface IResourceBundleLocator {
 
     ResourceBundle getResourceBundle(String p_I18N);
+
+    String getValue(String p_Key);
 }

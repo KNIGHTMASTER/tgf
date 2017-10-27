@@ -29,6 +29,7 @@ import id.co.telkomsigma.tgf.web.admin.vaadin.dto.MenuItemDTO;
 import id.co.telkomsigma.tgf.web.admin.vaadin.theme.ValoThemeSessionInitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,8 @@ import java.util.LinkedList;
  */
 @Title("Application Web Backend")
 @Theme(value = "tgf")
-@SpringUI(path = "")
+@SpringUI(path = "/admin")
+@Scope(scopeName = "prototype")
 @PreserveOnRefresh
 public class WebAdminUI extends UI {
     /**

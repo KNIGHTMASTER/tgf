@@ -1,6 +1,7 @@
 package id.co.telkomsigma.tgf.swing.component.dialog;
 
 import id.co.telkomsigma.tgf.swing.component.base.ICentralizePositionComponent;
+import id.co.telkomsigma.tgf.swing.component.base.IResourceBundleLocator;
 import id.co.telkomsigma.tgf.swing.controller.dialog.ControllerDialogLogin;
 import id.co.telkomsigma.tgf.swing.view.frame.MainFrame;
 import id.co.telkomsigma.tgf.swing.view.panel.login.DialogLoginPanelBottom;
@@ -8,6 +9,7 @@ import id.co.telkomsigma.tgf.swing.view.panel.login.DialogLoginPanelTop;
 import id.co.telkomsigma.tgf.util.IComponentAction;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -34,6 +36,12 @@ public class DialogLogin extends JDialog implements IComponentInitializer, IComp
     @Autowired
     private ICentralizePositionComponent centralizePositionComponent;
 
+    @Autowired
+    private IResourceBundleLocator rb;
+
+    @Value("${splashscreen.icon.imageurl}")
+    private String dialogLoginIcon;
+
     private MainFrame mainFrame;
     
     private boolean isInitiated = false;
@@ -44,9 +52,9 @@ public class DialogLogin extends JDialog implements IComponentInitializer, IComp
     
     @Override
     public void initComponents() {
-        this.setTitle("Login");
+        this.setTitle(rb.getValue("ui.dialog.login.title"));
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image dialogIcon = kit.getImage(getClass().getClassLoader().getResource("assets/jframeicon.png"));
+        Image dialogIcon = kit.getImage(getClass().getClassLoader().getResource(dialogLoginIcon));
         this.setIconImage(dialogIcon);
 
         this.getContentPane().add(dialogLoginPanelTop, BorderLayout.CENTER);

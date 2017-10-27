@@ -3,6 +3,7 @@ package id.co.telkomsigma.tgf.swing.component.dialog;
 import id.co.telkomsigma.tgf.swing.component.base.ICentralizePositionComponent;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +26,9 @@ public class DialogProgress extends JDialog implements IComponentInitializer {
     @Autowired
     ICentralizePositionComponent centralizePositionComponent;
 
+    @Value("${dialog.progress.imageurl}")
+    private String dialogProgressImageUrl;
+
     @PostConstruct
     @Override
     public void initComponents() {
@@ -37,7 +41,7 @@ public class DialogProgress extends JDialog implements IComponentInitializer {
         this.setModal(true);
         centralizePositionComponent.setDialogToCenter(this);
 
-        lbl1.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/loading_animation.gif")));
+        lbl1.setIcon(new ImageIcon(getClass().getClassLoader().getResource(dialogProgressImageUrl)));
         this.add(lbl1, BorderLayout.CENTER);
         this.setSize(100, 100);
         this.setPreferredSize(new Dimension(100, 100));

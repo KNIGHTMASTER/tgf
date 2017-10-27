@@ -15,5 +15,6 @@ public interface TGFConstant {
     interface Icons {
         String DASHBOARD = "DASHBOARD";
         String SAFE_LOCK = "SAFE_LOCK";
+        String UNLOCK = "UNLOCK";
     }
 }

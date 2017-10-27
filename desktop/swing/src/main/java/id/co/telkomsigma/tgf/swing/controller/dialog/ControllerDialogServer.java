@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerDialogServer implements IParameterizedComponent<Object> {
 
-    private Logger logger = LoggerFactory.getLogger(ControllerDialogServer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ControllerDialogServer.class);
 
     @Override
     public void setParam(Object p_Param) {

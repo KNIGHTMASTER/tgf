@@ -2,6 +2,7 @@ package id.co.telkomsigma.tgf.swing.component.dialog;
 
 import id.co.telkomsigma.tgf.swing.component.base.ICentralizePositionComponent;
 import id.co.telkomsigma.tgf.swing.component.base.IComponentMenuCallable;
+import id.co.telkomsigma.tgf.swing.component.base.IResourceBundleLocator;
 import id.co.telkomsigma.tgf.swing.controller.dialog.ControllerDialogServer;
 import id.co.telkomsigma.tgf.swing.view.tab.TabSettings;
 import id.co.telkomsigma.tgf.util.IComponentAction;
@@ -9,6 +10,7 @@ import id.co.telkomsigma.tgf.util.IComponentInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -38,14 +40,20 @@ public class DialogServer extends JDialog implements IComponentInitializer, ICom
     @Autowired
     private ControllerDialogServer controllerDialogServer;
 
+    @Autowired
+    private IResourceBundleLocator rb;
+
+    @Value("${splashscreen.icon.imageurl}")
+    private String dialogServerIcon;
+
     public boolean isInitialized = false;
 
     @Override
     public void initComponents() {
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image dialogServiceIcon = kit.getImage(getClass().getClassLoader().getResource("assets/jframeicon.png"));
+        Image dialogServiceIcon = kit.getImage(getClass().getClassLoader().getResource(dialogServerIcon));
         this.setIconImage(dialogServiceIcon);
-        this.setTitle("Application Settings");
+        this.setTitle(rb.getValue("ui.dialog.server.title"));
         this.setModal(true);
         this.setResizable(false);
         this.setSize(500, 250);

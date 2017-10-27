@@ -4,6 +4,7 @@ import com.vaadin.server.FileResource;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.ui.MenuBar;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
+import id.co.telkomsigma.tgf.web.admin.vaadin.command.LogOutCommand;
 import id.co.telkomsigma.tgf.web.admin.vaadin.constant.TGFValoTheme;
 import id.co.telkomsigma.tgf.web.admin.vaadin.ui.StringGenerator;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ import java.io.IOException;
  * @author <a href="mailto:fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
 @SpringComponent
-public class MenuUserSetting extends MenuBar implements IComponentInitializer {
+public class MenuUserSetting extends MenuBar implements IComponentInitializer{
     /**
      *
      *
@@ -31,6 +32,9 @@ public class MenuUserSetting extends MenuBar implements IComponentInitializer {
 
     @Autowired
     private ResourceLoader resourceLoader;
+
+    @Autowired
+    private LogOutCommand logOutCommand;
 
     @Value("${app.default.profile.picture}")
     private String appDefaultProfilePicture;
@@ -57,6 +61,7 @@ public class MenuUserSetting extends MenuBar implements IComponentInitializer {
         settingsItem.addItem("Edit Profile", null);
         settingsItem.addItem("Preferences", null);
         settingsItem.addSeparator();
-        settingsItem.addItem("Sign Out", null);
+        settingsItem.addItem("Sign Out", logOutCommand);
     }
+
 }

@@ -4,6 +4,7 @@ import id.co.telkomsigma.tgf.swing.controller.panel.ControllerPanelTabSettingDat
 import id.co.telkomsigma.tgf.swing.dto.param.DataSourceParam;
 import id.co.telkomsigma.tgf.util.IComponentAction;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
+import id.co.telkomsigma.tgf.util.UIConstant.Common.Punctuation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,15 +87,15 @@ public class PanelTabSettingDatabase extends JPanel implements IComponentInitial
     int validateDataSourceParam(){
         dataSourceParam = new DataSourceParam();
         int result = 0;
-        if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtHost().getText().equals("")){
+        if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtHost().getText().equals(Punctuation.EMPTY)){
             dataSourceParam.setHost(panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtHost().getText());
-            if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtPort().getText().equals("")){
+            if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtPort().getText().equals(Punctuation.EMPTY)){
                 dataSourceParam.setPort(panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtPort().getText());
-                if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtSchemaName().getText().equals("")){
+                if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtSchemaName().getText().equals(Punctuation.EMPTY)){
                     dataSourceParam.setSchema(panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtSchemaName().getText());
-                    if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtUserName().getText().equals("")){
+                    if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtUserName().getText().equals(Punctuation.EMPTY)){
                         dataSourceParam.setUserName(panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtUserName().getText());
-                        if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtPassword().getText().equals("")){
+                        if (!panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtPassword().getText().equals(Punctuation.EMPTY)){
                             dataSourceParam.setPassword(panelTabSettingDatabaseTop.getPanelTabSettingDatabaseRight().getTxtPassword().getText());
                             result = 1;
                         }

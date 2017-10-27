@@ -65,6 +65,7 @@ public class ControllerPanelTabSettingDatabase implements IParameterizedComponen
 
         return propertyModifier.loadDataSourceSetting();
     }
+
     @Override
     public void setParam(DataSourceParam p_Param) {
         this.dataSourceParam = p_Param;

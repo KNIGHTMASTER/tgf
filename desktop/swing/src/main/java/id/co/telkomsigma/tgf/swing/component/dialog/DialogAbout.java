@@ -4,6 +4,7 @@ import id.co.telkomsigma.tgf.swing.component.base.ICentralizePositionComponent;
 import id.co.telkomsigma.tgf.swing.component.base.IResourceBundleLocator;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,10 @@ import java.awt.*;
  */
 @Component
 public class DialogAbout extends JDialog implements IComponentInitializer {
-    
+    /**
+     *
+     *
+     */
     private static final long serialVersionUID = -5546517331962931229L;
 
     @Autowired
@@ -25,32 +29,38 @@ public class DialogAbout extends JDialog implements IComponentInitializer {
     @Autowired
     ICentralizePositionComponent centralizePositionComponent;
 
+    @Value("${splashscreen.icon.imageurl}")
+    private String iconDialogAbout;
+
+    @Value("${dialog.about.imageurl}")
+    private String dialogAboutImageUrl;
+
     @PostConstruct
     @Override
     public void initComponents() {
         this.setModal(true);
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image dialogIcon = kit.getImage(getClass().getClassLoader().getResource("assets/jframeicon.png"));
+        Image dialogIcon = kit.getImage(getClass().getClassLoader().getResource(iconDialogAbout));
         this.setIconImage(dialogIcon);
 
         centralizePositionComponent.setDialogCustomToCenter(this, 3, 2);
-        this.setSize(700, 150);
-        this.setTitle(rb.getResourceBundle("").getString("ui.dialog.about.title"));
+        this.setSize(700, 180);
+        this.setTitle(rb.getValue("ui.dialog.about.title"));
         this.setLayout(new BorderLayout());
 
         JPanel panelLeft = new JPanel();
         panelLeft.setLayout(new BorderLayout());
         JLabel imgIcon = new JLabel();
-        imgIcon.setIcon(new ImageIcon(getClass().getClassLoader().getResource("assets/etc.png")));
+        imgIcon.setIcon(new ImageIcon(getClass().getClassLoader().getResource(dialogAboutImageUrl)));
         panelLeft.add(imgIcon, BorderLayout.CENTER);
 
         JScrollPane scroller = new JScrollPane();
         JTextArea textAreaInformation = new JTextArea();
-        textAreaInformation.setText("ETC (E- Toll Collection)\nVersion 1.0.0\nBuilt on July, 2017\nJVM "
+        textAreaInformation.setText(rb.getValue("ui.dialog.about.message")
                 +System.getProperty("java.vm.version")+" "
                 +System.getProperty("java.vm.vendor")+" "
                 +System.getProperty("java.vm.name")+"\n\n"
-                +"Copyright (c) 2017 Telkomsigma");
+                +rb.getValue("ui.dialog.about.copyright"));
         textAreaInformation.setEditable(false);
 
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

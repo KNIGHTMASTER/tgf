@@ -4,9 +4,7 @@ import id.co.telkomsigma.tgf.swing.component.dialog.DialogAbout;
 import id.co.telkomsigma.tgf.swing.component.dialog.DialogLogin;
 import id.co.telkomsigma.tgf.swing.component.dialog.DialogServer;
 import id.co.telkomsigma.tgf.swing.component.dialog.DialogTheme;
-import id.co.telkomsigma.tgf.swing.view.desktoppane.DesktopPaneMain;
 import id.co.telkomsigma.tgf.swing.view.frame.MainFrame;
-import id.co.telkomsigma.tgf.swing.view.internalframe.dashboard.InternalFrameDashboard;
 
 import java.io.Serializable;
 
@@ -28,8 +26,6 @@ public class ParamControllerFrameMain implements Serializable {
     private int observerHeight;
 
     private MainFrame mainFrame;
-    private DesktopPaneMain desktopPaneMain;
-    private InternalFrameDashboard internalFrameDashboard;
     private DialogLogin dialogLogin;
     private DialogAbout dialogAbout;
     private DialogServer dialogServer;
@@ -73,22 +69,6 @@ public class ParamControllerFrameMain implements Serializable {
 
     public void setMainFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-    }
-
-    public DesktopPaneMain getDesktopPaneMain() {
-        return desktopPaneMain;
-    }
-
-    public void setDesktopPaneMain(DesktopPaneMain desktopPaneMain) {
-        this.desktopPaneMain = desktopPaneMain;
-    }
-
-    public InternalFrameDashboard getInternalFrameDashboard() {
-        return internalFrameDashboard;
-    }
-
-    public void setInternalFrameDashboard(InternalFrameDashboard internalFrameDashboard) {
-        this.internalFrameDashboard = internalFrameDashboard;
     }
 
     public DialogLogin getDialogLogin() {
