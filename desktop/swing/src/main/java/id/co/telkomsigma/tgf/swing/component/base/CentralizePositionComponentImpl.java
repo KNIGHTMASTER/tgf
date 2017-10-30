@@ -33,8 +33,26 @@ public class CentralizePositionComponentImpl implements ICentralizePositionCompo
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
         Dimension jInternalFrameSize = p_JInternalFrame.getSize();
-        p_JInternalFrame.setLocation((screenSize.width - jInternalFrameSize.width)/2,
-                (screenSize.height- jInternalFrameSize.height)/2);
+        p_JInternalFrame.setLocation(
+                (screenSize.width - jInternalFrameSize.width)/5,
+                (screenSize.height- jInternalFrameSize.height)/2
+        );
+    }
+
+    @Override
+    public void setIFrameToCenter(JInternalFrame p_JInternalFrame, int p_XDivider, int p_YDivider) {
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+        Dimension jInternalFrameSize = p_JInternalFrame.getSize();
+        p_JInternalFrame.setLocation(
+                (screenSize.width - jInternalFrameSize.width)/p_XDivider,
+                (screenSize.height- jInternalFrameSize.height)/p_YDivider
+        );
+    }
+
+    @Override
+    public void setIFrameToPosition(JInternalFrame p_JInternalFrame, int p_XPosition, int p_YPosition) {
+        p_JInternalFrame.setLocation(p_XPosition, p_YPosition);
     }
 
     @Override

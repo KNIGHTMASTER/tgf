@@ -1,6 +1,9 @@
 package id.co.telkomsigma.tgf.swing.component.sidebar;
 
+import id.co.telkomsigma.tgf.swing.component.list.*;
+import id.co.telkomsigma.tgf.swing.view.desktoppane.DesktopPaneMain;
 import id.co.telkomsigma.tgf.util.IComponentInitializer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +23,32 @@ public class DefaultSideBarMenu extends JPanel implements IComponentInitializer 
      */
     private static final long serialVersionUID = 1355033836513959613L;
 
+    @Autowired
+    private DesktopPaneMain desktopPaneMain;
+
+    @Autowired
+    private DashboardSubSideBarMenu dashboardSubSideBarMenu;
+
+    @Autowired
+    private PosSubSideBarMenu posSubSideBarMenu;
+
+    @Autowired
+    private SecuritySubSideBarMenu securitySubSideBarMenu;
+
+    @Autowired
+    private CompanySubSideBarMenu companySubSideBarMenu;
+
+    @Autowired
+    private FinanceAccountSubSideBarMenu financeAccountSubSideBarMenu;
+
+    @Autowired
+    private ProductSubSideBarMenu productSubSideBarMenu;
+
+    @Autowired
+    private ProfileSubSideBarMenu profileSubSideBarMenu;
+
+    private Toolkit kit = Toolkit.getDefaultToolkit();
+
     @PostConstruct
     @Override
     public void initComponents() {
@@ -28,82 +57,38 @@ public class DefaultSideBarMenu extends JPanel implements IComponentInitializer 
         splitPane.setOneTouchExpandable(true);
         splitPane.setDividerSize((int) (splitPane.getDividerSize() * 1.5));
 
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Icon iconCal24 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Calendar/Calendar_24x24.png")));
-        Icon iconMail16 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Mail/Mail_16x16.png")));
-        Icon iconMail24 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Mail/Mail_24x24.png")));
-        Icon iconGlobe24 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Data-Information-24.png")));
+        Icon iconShoppingCart24 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/ShoppingCart/Shopping-cart-24.png")));
+        Icon iconDashboard24 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Dashboard/Dashboard-24.png")));
+        Icon iconMaster24 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Database/Database-24.png")));
+        Icon iconGlobe24 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Protection/Protection-24.png")));
+        Icon iconHome16 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Home/home-16.png")));
+        Icon iconUser16 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/User/user-16.png")));
+        Icon iconWallet16 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Wallet/wallet-16.png")));
+        Icon iconBox16 = new ImageIcon(kit.getImage(getClass().getClassLoader().getResource("assets/Box/box-16.png")));
 
         SideBar sideBar = new SideBar(SideBar.SideBarMode.TOP_LEVEL, false, 300, true);
-        JTree tree = new JTree();
-        SidebarSection ss1 = new SidebarSection(sideBar, "Calendars", tree, iconCal24);
-        sideBar.addSection(ss1);
-        SideBar innerSideBar = new SideBar(SideBar.SideBarMode.INNER_LEVEL, true, -1, true);
 
-        JPanel ap = new JPanel(new BorderLayout());
-        ap.add(new JTextField("American Partners"));
-        innerSideBar.addSection(new SidebarSection(innerSideBar, ap, getInner1(), iconMail16));
-        innerSideBar.addSection(new SidebarSection(innerSideBar, "Internal", getInner2(), iconMail16));
-        innerSideBar.addSection(new SidebarSection(innerSideBar, "Promotions", getInner3(), iconMail16));
+        SidebarSection sideBarDashboard = new SidebarSection(sideBar, "Dashboard", dashboardSubSideBarMenu, iconDashboard24);
+        sideBar.addSection(sideBarDashboard);
 
-        SidebarSection ss2 = new SidebarSection(sideBar, "Mail Groups",  innerSideBar, iconMail24);
-        sideBar.addSection(ss2);
+        SidebarSection sectionPos = new SidebarSection(sideBar, "Pos", posSubSideBarMenu, iconShoppingCart24);
+        sideBar.addSection(sectionPos);
 
-        SidebarSection ss3 = new SidebarSection(sideBar, "Logistics Partners", getInner4(), iconGlobe24);
-        sideBar.addSection(ss3);
+        SideBar innerSideBarMasterData = new SideBar(SideBar.SideBarMode.INNER_LEVEL, true, -1, true);
+        innerSideBarMasterData.addSection(new SidebarSection(innerSideBarMasterData, "Company", companySubSideBarMenu, iconHome16));
+        innerSideBarMasterData.addSection(new SidebarSection(innerSideBarMasterData, "Finance", financeAccountSubSideBarMenu, iconWallet16));
+        innerSideBarMasterData.addSection(new SidebarSection(innerSideBarMasterData, "Product", productSubSideBarMenu, iconBox16));
+        innerSideBarMasterData.addSection(new SidebarSection(innerSideBarMasterData, "Profile", profileSubSideBarMenu, iconUser16));
+
+        SidebarSection sectionMasterData = new SidebarSection(sideBar, "Master Data",  innerSideBarMasterData, iconMaster24);
+        sideBar.addSection(sectionMasterData);
+
+        SidebarSection sectionSecurity = new SidebarSection(sideBar, "Security", securitySubSideBarMenu, iconGlobe24);
+        sideBar.addSection(sectionSecurity);
 
         splitPane.setLeftComponent(sideBar);
-
-        JPanel centralPanel = new JPanel();
-        centralPanel.setLayout(new BorderLayout());
-        centralPanel.setMinimumSize(new Dimension(kit.getScreenSize().width-sideBar.getWidth(), kit.getScreenSize().height));
-        centralPanel.add(new JLabel("<html><body><h1>central panel</html>", JLabel.CENTER));
-
-        splitPane.setRightComponent(centralPanel);
-
+        splitPane.setRightComponent(desktopPaneMain);
         this.setLayout(new BorderLayout());
         this.add(splitPane);
-    }
-
-
-
-    private static JList<String> getInner4() {
-        DefaultListModel<String> model = new DefaultListModel<>();
-        model.add(0, "Bill Gates");
-        model.add(1, "Steven Spielberg");
-        model.add(2, "Donald Trump");
-        model.add(3, "Steve Jobs");
-
-        JList<String> list = new JList<>();
-
-        list.setModel(model);
-        return list;
-    }
-
-
-    private static JComponent getInner2() {
-        JList<String> list = getInner4();
-        return list;
-    }
-
-    private static JComponent getInner1() {
-        DefaultListModel<String> model = new DefaultListModel<>();
-        model.add(0, "Bill Gates");
-        model.add(1, "Steven Spielberg");
-
-        JList<String> list = new JList<>();
-
-        list.setModel(model);
-        return list;
-    }
-
-    private static JComponent getInner3() {
-        DefaultListModel<String> model = new DefaultListModel<>();
-        model.add(0, "Steve Jobs");
-
-        JList<String> list = new JList<>();
-
-        list.setModel(model);
-        return list;
     }
 }

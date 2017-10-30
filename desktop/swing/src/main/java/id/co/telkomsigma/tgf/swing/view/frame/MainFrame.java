@@ -9,8 +9,8 @@ import id.co.telkomsigma.tgf.swing.component.frame.IFrameSetup;
 import id.co.telkomsigma.tgf.swing.component.menubar.AppSwingMenuBar;
 import id.co.telkomsigma.tgf.swing.component.sidebar.DefaultSideBarMenu;
 import id.co.telkomsigma.tgf.swing.controller.frame.ControllerFrameMain;
-import id.co.telkomsigma.tgf.swing.dto.param.ParamControllerFrameMain;
-import id.co.telkomsigma.tgf.swing.view.internalframe.dashboard.InternalFrameDashboard;
+import id.co.telkomsigma.tgf.swing.dto.param.ControllerFrameMainParam;
+import id.co.telkomsigma.tgf.swing.view.internalframe.InternalFrameDashboard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
     final Toolkit toolkit = Toolkit.getDefaultToolkit();
     final Dimension screenSize = toolkit.getScreenSize();
 
-    private ParamControllerFrameMain paramControllerFrameMain;
+    private ControllerFrameMainParam controllerFrameMainParam;
 
     @Autowired
     private IFrameSetup frameSetup;
@@ -73,24 +73,24 @@ public class MainFrame extends JFrame {
     public void setupFrame(){
         frameSetup.doCompleteSetup(MainFrame.this, MainFrame.this);
         initParam();
-        controllerFrameMain.setParam(paramControllerFrameMain);
+        controllerFrameMain.setParam(controllerFrameMainParam);
         initComponents();
     }
 
 
     private void initParam(){
-        paramControllerFrameMain = new ParamControllerFrameMain();
+        controllerFrameMainParam = new ControllerFrameMainParam();
 
-        paramControllerFrameMain.setScreenSizeHeight(screenSize.height);
-        paramControllerFrameMain.setScreenSizeWidth(screenSize.width);
-        paramControllerFrameMain.setObserverHeight(HEIGHT);
-        paramControllerFrameMain.setObserverWidth(WIDTH);
+        controllerFrameMainParam.setScreenSizeHeight(screenSize.height);
+        controllerFrameMainParam.setScreenSizeWidth(screenSize.width);
+        controllerFrameMainParam.setObserverHeight(HEIGHT);
+        controllerFrameMainParam.setObserverWidth(WIDTH);
 
-        paramControllerFrameMain.setMainFrame(this);
-        paramControllerFrameMain.setDialogAbout(dialogAbout);
-        paramControllerFrameMain.setDialogLogin(dialogLogin);
-        paramControllerFrameMain.setDialogServer(dialogServer);
-        paramControllerFrameMain.setDialogTheme(dialogTheme);
+        controllerFrameMainParam.setMainFrame(this);
+        controllerFrameMainParam.setDialogAbout(dialogAbout);
+        controllerFrameMainParam.setDialogLogin(dialogLogin);
+        controllerFrameMainParam.setDialogServer(dialogServer);
+        controllerFrameMainParam.setDialogTheme(dialogTheme);
     }
 
     public void setMenuVisibility(boolean b){

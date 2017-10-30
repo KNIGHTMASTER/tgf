@@ -53,12 +53,14 @@ public class SideBar extends JPanel {
 	}
 	
     public void addSection(SidebarSection newSection, boolean collapse) {
- 		add(newSection);
- 		if(collapse){
-             newSection.collapse(false);
-         }else{
-             setCurrentSection(newSection);
-         }
+		if (newSection != null){
+			add(newSection);
+			if(collapse){
+				newSection.collapse(false);
+			}else{
+				setCurrentSection(newSection);
+			}
+		}
  	}
     
     public void addSection(SidebarSection newSection) {

@@ -97,7 +97,9 @@ public class SidebarSection extends JPanel {
 //		this.setMinimumSize(new Dimension(minComponentWidth, minComponentHeight));
 //		component.setPreferredSize(new Dimension(0,0));
 		
-		add(component, BorderLayout.CENTER);
+		if (component != null){
+			add(component, BorderLayout.CENTER);
+		}
 		
 		revalidate();
 	}
@@ -156,7 +158,9 @@ public class SidebarSection extends JPanel {
 		} else {
 			if (sideBarOwner.thisMode == SideBar.SideBarMode.INNER_LEVEL) {
 				setMaximumSize(new Dimension(Integer.MAX_VALUE, titlePanel.getPreferredSize().height));
-				contentPane.setVisible(false);
+				if (contentPane != null){
+					contentPane.setVisible(false);
+				}
 				revalidate();
 //				printDimensions();
 			} else {

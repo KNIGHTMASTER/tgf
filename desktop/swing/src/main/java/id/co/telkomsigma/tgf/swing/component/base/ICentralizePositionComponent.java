@@ -17,4 +17,8 @@ public interface ICentralizePositionComponent {
     void setDialogCustomToCenter(JDialog p_JDialog, int p_XDivider, int p_YDivider);
 
     void setIFrameToCenter(JInternalFrame p_JInternalFrame);
+
+    void setIFrameToCenter(JInternalFrame p_JInternalFrame, int p_XDivider, int p_YDivider);
+
+    void setIFrameToPosition(JInternalFrame p_JInternalFrame, int p_XPosition, int p_YPosition);
 }
